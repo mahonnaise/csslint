@@ -1,5 +1,5 @@
 /*
- * Rule: Don't use properties with a underscore prefix.
+ * Rule: Don't use the fragile \9 hack.
  *
  */
 /*global CSSLint*/
