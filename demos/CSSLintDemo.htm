@@ -2,14 +2,23 @@
 <html>
 <head>
     <title>CSSLint Demo</title>
-    <script type="text/javascript" src="../build/csslint.js"></script>
-    <style type="text/css">
-        .error { color: red; }
-    </style>
+    <link rel="stylesheet" href="demo.css"/>
+    <meta charset="UTF-8"/>
 </head>
 <body>
     <h1>CSSLint Demo</h1>
-    <textarea rows="50" cols="100" id="input">
+    <textarea rows="50" cols="100" id="input"></textarea>
+    <p>(You may want to keep the CSS kinda small, this could take a while.)</p>
+    <p><input type="button" id="paste-button" value="Paste Demo CSS"/></p>
+    <div id="rules" class="checkboxList"></div>
+    <p>
+        <input type="button" id="check-all-button" value="Check All"/> <input type="button" id="uncheck-all-button" value="Uncheck All"/> <input type="button" id="lint-button" value="Run CSSLint"/>
+    </p>
+    <div id="output"></div>
+    <script src="../build/csslint.js"></script>
+    <script src="demo.js"></script>
+    <!-- demo.css -->
+<script type="text/x-inline" id="demo-css">
 @charset "UTF-8";
 
 @import url("booya.css") print,screen;
@@ -68,38 +77,6 @@ li.last {
     font-size: 2em;
     content: counter(page);
   }
-}
-    </textarea>
-    <input type="button" id="lint-btn" value="Run CSSLint">
-    <p>(You may want to keep the CSS kinda small, this could take a while.)</p>
-    <div id="output">
-
-    </div>
-    <script>
-    (function(){
-
-        document.body.onclick = function(event){
-            event = event || window.event;
-            var target = event.target || event.srcElement,
-                results, messages, i, len;
-
-
-            if (target.id == "lint-btn"){
-                document.getElementById("output").innerHTML = "";
-                results = CSSLint.verify(document.getElementById("input").value);
-                messages = results.messages;
-                for (i=0, len=messages.length; i < len; i++){
-                    log(messages[i].message + " (line " + messages[i].line + ", col " + messages[i].col + ")", messages[i].type);
-                }
-
-            }
-        };
-
-        function log(value, level){
-                var output = document.getElementById("output");
-                output.innerHTML += "<span class=\"" + level + "\">" + value.replace(/ /g, "&nbsp;") + "</span><br>";
-        }
-    })();
-    </script>
+}</script>
 </body>
 </html>
