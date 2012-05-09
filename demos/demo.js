@@ -45,7 +45,10 @@
         });
         for (i = 0, len = rules.length; i < len; i++) {
             rule = rules[i];
-            markup += '<label title="' + esc(rule.desc) + '"><input type="checkbox" data-id="' + rule.id + '"' + (set[rule.id] ? ' checked="checked"' : '') + '/>' + rule.id + '</label>';
+            // errors is hardcoded (2 = emit error messages), the UI won't serve any purpose
+            if (rule.id !== 'errors') {
+                markup += '<label title="' + esc(rule.desc) + '"><input type="checkbox" data-id="' + rule.id + '"' + (set[rule.id] ? ' checked="checked"' : '') + '/>' + rule.id + '</label>';
+            }
         }
         document.getElementById('rules').innerHTML = markup;
     }());
